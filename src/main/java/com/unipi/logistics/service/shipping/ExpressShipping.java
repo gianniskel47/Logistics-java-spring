@@ -1,0 +1,13 @@
+package com.unipi.logistics.service.shipping;
+
+import org.springframework.stereotype.Component;
+
+@Component("EXPRESS")
+public class ExpressShipping implements ShippingStrategy{
+
+    @Override
+    public double calculateShipping(double weight) {
+
+        return (weight * 2.5) + (weight * 2.5 * 0.5);
+    }
+}

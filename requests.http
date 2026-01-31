@@ -1,0 +1,67 @@
+### -------------------------------------------------------
+### ΒΗΜΑ 1: Δημιουργία Οχημάτων (Για να υπάρχει στόλος)
+### -------------------------------------------------------
+
+### 1. Φτιάξε ένα Φορτηγό
+POST http://localhost:8080/vehicles/init
+Content-Type: application/json
+
+{
+  "type": "TRUCK",
+  "licensePlate": "NKA-1001"
+}
+
+### 2. Φτιάξε ένα Drone
+POST http://localhost:8080/vehicles/init
+Content-Type: application/json
+
+{
+  "type": "DRONE",
+  "licensePlate": "FLY-999"
+}
+
+### -------------------------------------------------------
+### ΒΗΜΑ 2: Δημιουργία Παραγγελιών (Διαφορετικά σενάρια)
+### -------------------------------------------------------
+
+### 3. Παραγγελία 1: Μικρό δέμα για Αθήνα (STANDARD)
+# Κόστος: 10 * 2.5 = 25.0
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "shippingType": "STANDARD",
+  "weight": 10.0,
+  "destination": "Athens"
+}
+
+### 4. Παραγγελία 2: Βαρύ δέμα για Θεσσαλονίκη (EXPRESS - Το πιο ακριβό)
+# Κόστος: (20 * 2.5) * 1.5 = 75.0
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "shippingType": "EXPRESS",
+  "weight": 20.0,
+  "destination": "Thessaloniki"
+}
+
+### 5. Παραγγελία 3: Άλλο ένα για Αθήνα (STANDARD)
+# Κόστος: 5 * 2.5 = 12.5
+# Αυτό θα ομαδοποιηθεί μαζί με το 1ο στην "Athens"
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "shippingType": "STANDARD",
+  "weight": 5.0,
+  "destination": "Athens"
+}
+
+### -------------------------------------------------------
+### ΒΗΜΑ 3: Έλεγχος Analytics
+### -------------------------------------------------------
+
+### 6. Φέρε τα στατιστικά!
+# ΠΡΟΣΟΧΗ: Περίμενε 3 δευτερόλεπτα μετά τις παραγγελίες (λόγω Async)
+GET http://localhost:8080/analytics
