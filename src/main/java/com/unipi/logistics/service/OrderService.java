@@ -47,8 +47,7 @@ public class OrderService {
             Thread.sleep(3000);
             Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
 
-            ShippingStrategy shippingStrategy = shippingStrategyMap.get(order.getShippingType());
-            double shippingCost = shippingStrategy.calculateShipping(order.getWeight());
+            double shippingCost = calculateShipping(order.getShippingType(), order.getWeight());
             order.setCost(shippingCost);
             order.setStatus("PROCESSED");
             orderRepository.save(order);
@@ -68,5 +67,10 @@ public class OrderService {
         Map<String, List<Order>> ordersByDestination = allOrders.stream().collect(groupingBy(Order::getDestination));
 
         return new AnalyticsResponse(totalCost, ordersByDestination, mostExpensiveOrder, delayedOrderIds);
+    }
+
+    public double calculateShipping(String shippingType, double weight){
+        ShippingStrategy shippingStrategy = shippingStrategyMap.get(shippingType);
+        return shippingStrategy.calculateShipping(weight);
     }
 }

@@ -15,7 +15,7 @@ public class VehicleFactory {
             case "VAN":
                 return new Van();
             default:
-                throw new IllegalArgumentException("Unknown channel: " + vehicleType);
+                throw new IllegalArgumentException("Unknown type: " + vehicleType);
         }
     }
 }

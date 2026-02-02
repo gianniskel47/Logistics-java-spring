@@ -5,12 +5,10 @@ import com.unipi.logistics.dto.OrderRequest;
 import com.unipi.logistics.model.Order;
 import com.unipi.logistics.service.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class OrderController {
 
     private final OrderService orderService;
@@ -34,5 +32,11 @@ public class OrderController {
     @GetMapping("/analytics")
     public AnalyticsResponse getTotalRevenue(){
         return orderService.getAnalytics();
+    }
+
+    @GetMapping("/orders/calculate-fee")
+    public ResponseEntity<Double> calculateFee(@RequestParam String type, @RequestParam Double weight){
+        double shippingFee = orderService.calculateShipping(type, weight);
+        return ResponseEntity.ok(shippingFee);
     }
 }

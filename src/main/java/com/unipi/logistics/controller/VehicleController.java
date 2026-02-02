@@ -4,13 +4,11 @@ import com.unipi.logistics.dto.VehicleRequest;
 import com.unipi.logistics.model.Vehicle;
 import com.unipi.logistics.service.VehicleService;
 import com.unipi.logistics.service.vehicles.VehicleBlueprint;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("vehicles")
+@CrossOrigin(origins = "http://localhost:3000")
 public class VehicleController {
 
     private final VehicleService vehicleService;
