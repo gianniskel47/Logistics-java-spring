@@ -1,4 +1,4 @@
-package com.unipi.logistics.service.vehicles;
+package com.unipi.logistics.model.Blueprints;
 
 public class Van extends VehicleBlueprint {
 

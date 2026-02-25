@@ -1,17 +1,16 @@
 package com.unipi.logistics.service;
 
+import com.unipi.logistics.Strategy.ShippingStrategy;
 import com.unipi.logistics.dto.AnalyticsResponse;
 import com.unipi.logistics.model.Order;
 import com.unipi.logistics.repository.OrderRepository;
-import com.unipi.logistics.service.shipping.ShippingStrategy;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -70,7 +69,8 @@ public class OrderService {
     }
 
     public double calculateShipping(String shippingType, double weight){
-        ShippingStrategy shippingStrategy = shippingStrategyMap.get(shippingType);
+        String upperCaseShippingType = shippingType.toUpperCase();
+        ShippingStrategy shippingStrategy = shippingStrategyMap.get(upperCaseShippingType);
         return shippingStrategy.calculateShipping(weight);
     }
 }

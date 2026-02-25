@@ -20,7 +20,7 @@ public class OrderController {
     @PostMapping("/orders")
     public ResponseEntity<Long> createOrder(@RequestBody OrderRequest orderRequest){
 
-        Order order = new Order(orderRequest.getCustomerName(), orderRequest.getWeight(), orderRequest.getDestination(), orderRequest.getShippingType(), "PENDING",(double)0);
+        Order order = new Order(orderRequest.getCustomerName(), orderRequest.getWeight(), orderRequest.getDestination(), orderRequest.getShippingType(), "PENDING",0.0);
         Long savedOrderId = orderService.saveOrderAndGetId(order);
         orderService.processOrderAsync(savedOrderId);
 

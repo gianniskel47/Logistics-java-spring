@@ -1,9 +1,12 @@
 package com.unipi.logistics.service;
 
+import com.unipi.logistics.Factory.VehicleFactory;
 import com.unipi.logistics.model.Vehicle;
+import com.unipi.logistics.model.Blueprints.VehicleBlueprint;
 import com.unipi.logistics.repository.VehicleRepository;
-import com.unipi.logistics.service.vehicles.VehicleBlueprint;
-import com.unipi.logistics.service.vehicles.VehicleFactory;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,5 +27,9 @@ public class VehicleService {
 
     public VehicleBlueprint createVehicle(String vehicleType){
         return vehicleFactory.createVehicle(vehicleType);
+    }
+
+    public List<Vehicle> getAllVehicles(){
+        return vehicleRepository.findAll();
     }
 }

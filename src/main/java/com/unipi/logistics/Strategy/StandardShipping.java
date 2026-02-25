@@ -1,4 +1,4 @@
-package com.unipi.logistics.service.shipping;
+package com.unipi.logistics.Strategy;
 
 import org.springframework.stereotype.Component;
 

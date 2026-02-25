@@ -1,4 +1,4 @@
-package com.unipi.logistics.service.shipping;
+package com.unipi.logistics.Strategy;
 
 public interface ShippingStrategy {
 

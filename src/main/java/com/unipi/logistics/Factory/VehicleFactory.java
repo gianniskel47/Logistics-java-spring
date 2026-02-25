@@ -1,6 +1,11 @@
-package com.unipi.logistics.service.vehicles;
+package com.unipi.logistics.Factory;
 
 import org.springframework.stereotype.Component;
+
+import com.unipi.logistics.model.Blueprints.Drone;
+import com.unipi.logistics.model.Blueprints.Truck;
+import com.unipi.logistics.model.Blueprints.Van;
+import com.unipi.logistics.model.Blueprints.VehicleBlueprint;
 
 @Component
 public class VehicleFactory {

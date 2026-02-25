@@ -1,6 +1,5 @@
 package com.unipi.logistics.model;
 
-import com.unipi.logistics.service.shipping.ShippingStrategy;
 import jakarta.persistence.*;
 
 @Entity
